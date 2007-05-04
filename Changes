@@ -1,0 +1,28 @@
+Revision history for Perl extension Module::LocalBuild.
+
+The contributors that suggested a given feature are shown in [].  [by ...]
+indicates the contributor was also the author of the fix; Thanks!
+
+* Module::LocalBuild 1.000 5/3/2007
+
+**	First packaged release to CPAN.
+
+* Module::LocalBuild 0.000 2001
+
+**	First version created for internal use.
+
+----------------------------------------------------------------------
+$Id: Changes 38114 2007-05-04 19:36:12Z wsnyder $
+DESCRIPTION: Documentation on change history for this package
+----------------------------------------------------------------------
+
+This uses outline mode in Emacs.  See C-h m [M-x describe-mode].
+
+Copyright 2001-2007 by Wilson Snyder.  This program is free software;
+you can redistribute it and/or modify it under the terms of either the GNU
+Lesser General Public License or the Perl Artistic License.
+
+Local variables:
+mode: outline
+paragraph-separate: "[ 	\f\n]*$"
+end:
