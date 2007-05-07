@@ -3,6 +3,10 @@ Revision history for Perl extension Module::LocalBuild.
 The contributors that suggested a given feature are shown in [].  [by ...]
 indicates the contributor was also the author of the fix; Thanks!
 
+* Module::LocalBuild 1.001 5/7/2007
+
+****	Fix localboot test.  [cpan-testers]
+
 * Module::LocalBuild 1.000 5/3/2007
 
 **	First packaged release to CPAN.
@@ -12,7 +16,7 @@ indicates the contributor was also the author of the fix; Thanks!
 **	First version created for internal use.
 
 ----------------------------------------------------------------------
-$Id: Changes 38114 2007-05-04 19:36:12Z wsnyder $
+$Id: Changes 38172 2007-05-07 20:29:45Z wsnyder $
 DESCRIPTION: Documentation on change history for this package
 ----------------------------------------------------------------------
 

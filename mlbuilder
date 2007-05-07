@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: mlbuilder 38063 2007-05-04 13:00:44Z wsnyder $
+# $Id: mlbuilder 38146 2007-05-07 13:04:32Z wsnyder $
 # See copyright, etc in below POD section.
 ######################################################################
 
@@ -54,7 +54,7 @@ exit(0);
 
 sub usage {
     eval { use Pod::Usage; };
-    print '$Id: mlbuilder 38063 2007-05-04 13:00:44Z wsnyder $ ', "\n";
+    print '$Id: mlbuilder 38146 2007-05-07 13:04:32Z wsnyder $ ', "\n";
     pod2usage(-verbose=>2, -exitval => 2);
     exit (1);
 }
@@ -153,11 +153,10 @@ sub _build_package {
     (my $basepkg = $pkg) =~ s!.*/!!;
     print "-"x20, " Build $basepkg (for $arch )\n";
 
-    $ENV{PERL} or die "%Error: PERL not set in environment\n";
     if (!-r "$pkg/README") {
 	IO::File->new(">$pkg/README")->close;  # Prevent README not in MANIFEST errors
     }
-    run_system ("cd $pkg && $ENV{PERL} Makefile.PL && make pure_all");
+    run_system ("cd $pkg && $^X Makefile.PL && make pure_all");
 }
 
 sub _install_package {

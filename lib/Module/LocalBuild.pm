@@ -1,4 +1,4 @@
-# $Id: LocalBuild.pm 38063 2007-05-04 13:00:44Z wsnyder $
+# $Id: LocalBuild.pm 38172 2007-05-07 20:29:45Z wsnyder $
 # See copyright, etc in below POD section.
 ######################################################################
 
@@ -10,7 +10,7 @@ use IO::Dir;
 use strict;
 use vars qw ($VERSION @Ignore_Files_Regexps);
 
-$VERSION = '1.000';
+$VERSION = '1.001';
 
 @Ignore_Files_Regexps = (qr!/CVS$!,
 			 qr!.svn$!,
