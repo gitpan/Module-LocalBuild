@@ -1,7 +1,7 @@
-# $Id: Makefile.PL 38064 2007-05-04 13:49:14Z wsnyder $
+# $Id: Makefile.PL 59185 2008-08-15 14:51:55Z wsnyder $
 # DESCRIPTION: Perl ExtUtils: Type 'perl Makefile.PL' to create a Makefile for this package
 #
-# Copyright 2000-2007 by Wilson Snyder.  This program is free software;
+# Copyright 2000-2008 by Wilson Snyder.  This program is free software;
 # you can redistribute it and/or modify it under the terms of either the GNU
 # Lesser General Public License or the Perl Artistic License.
 
@@ -19,17 +19,17 @@ README: readme.texi
 
 ## Maintainer use:
 preexist:
-	test ! -r \$(HOME)/src/kits/\$(DISTVNAME).tar.gz
+	svnorcvs nexists \$(DISTNAME)_\$(VERSION_SYM)
+	test -s README
 
 tag:
 	svnorcvs tag  \$(DISTNAME)_\$(VERSION_SYM)
 
 maintainer-diff:
-	svnorcvs diff \$(DISTNAME)_\$(VERSION_SYM) 
+	svnorcvs diff \$(DISTNAME)_\$(VERSION_SYM)
 
 maintainer-dist: README preexist dist tag
-	cp \$(DISTVNAME).tar.gz \$(HOME)/src/kits
-	mv \$(DISTVNAME).tar.gz \$(HOME)/backpack
+	svnorcvs release \$(DISTVNAME).tar.gz
 
 maintainer-clean: distclean
 	-rm -rf README
@@ -52,7 +52,7 @@ WriteMakefile(
 			    'Pod::Usage' => 0,
 			},
 	      'dist'    => {COMPRESS => 'gzip -9f',
-			    SUFFIX   => '.gz', 
+			    SUFFIX   => '.gz',
 			    DIST_DEFAULT => 'README all tardist',
 			},
 	      );

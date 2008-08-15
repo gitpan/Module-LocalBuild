@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
-# $Id: 30_localboot.t 38063 2007-05-04 13:00:44Z wsnyder $
+# $Id: 30_localboot.t 59185 2008-08-15 14:51:55Z wsnyder $
 # DESCRIPTION: Perl ExtUtils: Type 'make test' to test this package
 #
-# Copyright 2007-2007 by Wilson Snyder <wsnyder@wsnyder.org>.  This
+# Copyright 2007-2008 by Wilson Snyder <wsnyder@wsnyder.org>.  This
 # program is free software; you can redistribute it and/or modify it under
 # the terms of either the GNU Lesser General Public License or the Perl
 # Artistic License.
@@ -18,7 +18,7 @@ use Module::LocalBuild;
 ok(1);
 
 # Clone the area so we self-test rebuilding it
-run_system ("/bin/rm -rf test_dir");
+run_system ("rm -rf test_dir");
 mkdir "test_dir";
 mkdir "test_dir/Module-LocalBuild";
 # Copy ourself (the package) inside to the test_dir

@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: mlbuilder 38146 2007-05-07 13:04:32Z wsnyder $
+# $Id: mlbuilder 59185 2008-08-15 14:51:55Z wsnyder $
 # See copyright, etc in below POD section.
 ######################################################################
 
@@ -7,6 +7,7 @@ use Carp;
 use Config;
 use Getopt::Long;
 use IO::File;
+use File::Find;
 
 # For testing, we're being called from our release script directory, so
 use lib "../lib";
@@ -14,7 +15,9 @@ use lib "blib/lib";
 
 use Module::LocalBuild;
 use strict;
-use vars qw ($Project $Debug);
+use vars qw ($Project $Debug $VERSION);
+
+$VERSION = '1.010';
 
 ######################################################################
 
@@ -22,6 +25,7 @@ my $opt_clean;
 my @Opt_Builds;
 my $Opt_Destdir;
 my $Opt_Locker;
+my @Opt_MakeFlags;
 
 #print join(' ',@ARGV),"\n";
 Getopt::Long::config ("no_auto_abbrev");
@@ -32,6 +36,8 @@ if (!GetOptions (
 		 "clean!"	=> \$opt_clean,
 		 "debug"	=> sub { $Debug=1; },
 		 "locker=s"	=> \$Opt_Locker,
+		 "makeflag=s"	=> sub { push @Opt_MakeFlags, $_[1]; },
+		 "version"	=> sub { print "Version $VERSION\n"; exit(0); },
 		 "<>"		=> sub { die "%Error: Unknown parameter: $_[0]\n"; },
 		 )) {
     die "%Error: Bad usage, try 'mlbuilder --help'\n";
@@ -54,7 +60,7 @@ exit(0);
 
 sub usage {
     eval { use Pod::Usage; };
-    print '$Id: mlbuilder 38146 2007-05-07 13:04:32Z wsnyder $ ', "\n";
+    print "Version $VERSION\n";
     pod2usage(-verbose=>2, -exitval => 2);
     exit (1);
 }
@@ -78,16 +84,26 @@ sub _clean_after_build {
 
 sub _chmod_dir {
     my $dir = shift;
-    run_system ("chmod -R og=u $dir");  # Fix permissions
+    run_system ("chmod -Rf og=u $dir", 1);  # Fix permissions
 }
 
 sub _clean_package {
     my $pkg = shift;
     if (-r "$pkg/Makefile") {
 	run_system ("cd $pkg && perl Makefile.PL && make clean", 1);
-	unlink ("$pkg/Makefile.old");  # Ok if error
-	unlink ("$pkg/MANIFEST.bak");  # Ok if error
     }
+    # Recursively remove Makefile.old's.  They might not just be directly under $pkg.
+    find ({wanted =>
+	       sub {
+		   (my $basename = $File::Find::name) =~ s!.*/!!;
+		   if ($basename eq 'Makefile.old'
+		       || $basename eq 'MANIFEST.bak') {
+		       unlink $File::Find::name;   # Ok if error
+		   }
+	       },
+	   follow => 0,
+	   no_chdir => 1,},
+	  $pkg);
 }
 
 ######################################################################
@@ -129,7 +145,7 @@ sub all_build {
 	    _build_package ($pkg);
 	}
 
-	run_system ("chmod -R a+w $Opt_Destdir");  # Fix permissions
+	run_system ("chmod -Rf a+w $Opt_Destdir", 1);  # Fix permissions, ok if error
 	foreach my $pkg (@Opt_Builds) {
 	    _install_package ($pkg, $Opt_Destdir)
 	}
@@ -156,7 +172,8 @@ sub _build_package {
     if (!-r "$pkg/README") {
 	IO::File->new(">$pkg/README")->close;  # Prevent README not in MANIFEST errors
     }
-    run_system ("cd $pkg && $^X Makefile.PL && make pure_all");
+    run_system ("cd $pkg && $^X Makefile.PL"
+		." && make ".(join ' ',@Opt_MakeFlags)." pure_all");
 }
 
 sub _install_package {
@@ -193,7 +210,7 @@ mlbuilder - Build Perl Modules in a local way
 
   mlbuilder --clean
 
-  or 
+  or
     use Module::LocalBuilder;
     Module::LocalBuilder::need(...);
 
@@ -221,11 +238,20 @@ clean'ed.
 For use by Module::LocalBuild to execute Perl builds.  The module name for
 lock services.
 
+=item --makeflag I<flag>
+
+When building, add specified flags to the make line.  May be specified
+multiple times.
+
+=item --version
+
+Displays program version and exits.
+
 =back
 
 =head1 DISTRIBUTION
 
-Copyright 2000-2007 by Wilson Snyder.  This program is free software; you
+Copyright 2000-2008 by Wilson Snyder.  This program is free software; you
 can redistribute it and/or modify it under the terms of either the GNU
 Lesser General Public License or the Perl Artistic License.
 

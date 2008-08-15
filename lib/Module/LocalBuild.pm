@@ -1,4 +1,4 @@
-# $Id: LocalBuild.pm 38172 2007-05-07 20:29:45Z wsnyder $
+# $Id: LocalBuild.pm 59185 2008-08-15 14:51:55Z wsnyder $
 # See copyright, etc in below POD section.
 ######################################################################
 
@@ -10,7 +10,7 @@ use IO::Dir;
 use strict;
 use vars qw ($VERSION @Ignore_Files_Regexps);
 
-$VERSION = '1.001';
+$VERSION = '1.010';
 
 @Ignore_Files_Regexps = (qr!/CVS$!,
 			 qr!.svn$!,
@@ -65,7 +65,7 @@ sub need {
 	} else {
 	    # Have any files changed?
 	    my $build_mtime = (stat($built_file))[9] || 0;
-	    # Get true if any files newer then specified time
+	    # Get true if any files newer than specified time
 	    foreach my $dir (@{$self->{packages}}) {
 		my $action = 'build';
 		$rebuild=1 if _date_check_recurse($self, $dir, $build_mtime);
@@ -139,7 +139,7 @@ sub _date_check_recurse {
     my $self = shift;
     my $filename = shift;
     my $build_mtime = shift;
-    # Return true if any file is newer then specified date
+    # Return true if any file is newer than specified date
     #print "_date_check_recurse $filename\n" if $self->{debug};
 
     # Exceptions
@@ -197,7 +197,7 @@ Module::LocalBuild - Support routines for setting up perltools area
 	  packages => ['some_path/Module-LocalBuild',
 		       'some_path/ModuleBaz',
 		       ],
-    	  # Additional build dependancies
+	  # Additional build dependencies
 	  deps => [],
 	  );
 
@@ -208,7 +208,7 @@ packages in a local working copy of a source code repository.  This allows
 people to have local copies of Perl modules, and edit them at will without
 having to worry about when to compile them.
 
-It also allows the same sources to be simultaniously built and maintained
+It also allows the same sources to be simultaneously built and maintained
 under different operating systems.
 
 =head1 METHODS
@@ -236,7 +236,7 @@ on different OSes may collide.
 
 =item deps => [ I<directories>... ]
 
-Addiditional directory names which if change will request a rebuild.  This
+Additional directory names which if change will request a rebuild.  This
 is useful for local files, such as scripts which wrap mlbuilder.
 
 =item libs => [ I<directories>... ]
@@ -282,7 +282,7 @@ variable.
 
 =head1 DISTRIBUTION
 
-Copyright 2000-2007 by Wilson Snyder.  This program is free software; you
+Copyright 2000-2008 by Wilson Snyder.  This program is free software; you
 can redistribute it and/or modify it under the terms of either the GNU
 Lesser General Public License or the Perl Artistic License.
 

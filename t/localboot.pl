@@ -1,9 +1,9 @@
-# $Id: localboot.pl 37762 2007-05-01 15:46:00Z wsnyder $
+# $Id: localboot.pl 59185 2008-08-15 14:51:55Z wsnyder $
 # Author: Wilson Snyder <wsnyder@wsnyder.org>
 # DESCRIPTION: Example file that boots localbuild for testing
 ######################################################################
 #
-# Copyright 2007-2007 by Wilson Snyder <wsnyder@wsnyder.org>.  This
+# Copyright 2007-2008 by Wilson Snyder <wsnyder@wsnyder.org>.  This
 # program is free software; you can redistribute it and/or modify it under
 # the terms of either the GNU Lesser General Public License or the Perl
 # Artistic License.
