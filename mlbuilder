@@ -1,5 +1,4 @@
 #!/usr/bin/perl -w
-# $Id: mlbuilder 59185 2008-08-15 14:51:55Z wsnyder $
 # See copyright, etc in below POD section.
 ######################################################################
 
@@ -17,7 +16,7 @@ use Module::LocalBuild;
 use strict;
 use vars qw ($Project $Debug $VERSION);
 
-$VERSION = '1.010';
+$VERSION = '1.011';
 
 ######################################################################
 
@@ -97,7 +96,9 @@ sub _clean_package {
 	       sub {
 		   (my $basename = $File::Find::name) =~ s!.*/!!;
 		   if ($basename eq 'Makefile.old'
-		       || $basename eq 'MANIFEST.bak') {
+		       || $basename eq 'MANIFEST.bak'
+		       || $basename =~ /^\.objcache_/
+		       ) {
 		       unlink $File::Find::name;   # Ok if error
 		   }
 	       },
@@ -251,9 +252,10 @@ Displays program version and exits.
 
 =head1 DISTRIBUTION
 
-Copyright 2000-2008 by Wilson Snyder.  This program is free software; you
+Copyright 2000-2009 by Wilson Snyder.  This program is free software; you
 can redistribute it and/or modify it under the terms of either the GNU
-Lesser General Public License or the Perl Artistic License.
+Lesser General Public License Version 3 or the Perl Artistic License
+Version 2.0.
 
 =head1 AUTHORS
 

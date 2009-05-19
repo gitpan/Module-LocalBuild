@@ -1,9 +1,9 @@
-# $Id: test_utils.pl 59185 2008-08-15 14:51:55Z wsnyder $
 # DESCRIPTION: Perl ExtUtils: Common routines required by package tests
 #
-# Copyright 2003-2008 by Wilson Snyder.  This program is free software;
-# you can redistribute it and/or modify it under the terms of either the GNU
-# Lesser General Public License or the Perl Artistic License.
+# Copyright 2003-2009 by Wilson Snyder.  This program is free software; you
+# can redistribute it and/or modify it under the terms of either the GNU
+# Lesser General Public License Version 3 or the Perl Artistic License
+# Version 2.0.
 ######################################################################
 
 use vars qw($PERL $GCC);

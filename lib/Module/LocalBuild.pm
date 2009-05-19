@@ -1,4 +1,3 @@
-# $Id: LocalBuild.pm 59185 2008-08-15 14:51:55Z wsnyder $
 # See copyright, etc in below POD section.
 ######################################################################
 
@@ -10,7 +9,7 @@ use IO::Dir;
 use strict;
 use vars qw ($VERSION @Ignore_Files_Regexps);
 
-$VERSION = '1.010';
+$VERSION = '1.011';
 
 @Ignore_Files_Regexps = (qr!/CVS$!,
 			 qr!.svn$!,
@@ -282,9 +281,10 @@ variable.
 
 =head1 DISTRIBUTION
 
-Copyright 2000-2008 by Wilson Snyder.  This program is free software; you
+Copyright 2000-2009 by Wilson Snyder.  This program is free software; you
 can redistribute it and/or modify it under the terms of either the GNU
-Lesser General Public License or the Perl Artistic License.
+Lesser General Public License Version 3 or the Perl Artistic License
+Version 2.0.
 
 =head1 AUTHORS
 
