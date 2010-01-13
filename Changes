@@ -3,6 +3,10 @@ Revision history for Perl extension Module::LocalBuild.
 The contributors that suggested a given feature are shown in [].  [by ...]
 indicates the contributor was also the author of the fix; Thanks!
 
+* Module::LocalBuild 1.012 2010/01/12
+
+***	Ignore .git directories when detecting changes.
+
 * Module::LocalBuild 1.011 2009/05/19
 
 **	This package is now licensed under LGPL v3 and/or Artistic v2.0.
@@ -33,7 +37,7 @@ DESCRIPTION: Documentation on change history for this package
 
 This uses outline mode in Emacs.  See C-h m [M-x describe-mode].
 
-Copyright 2001-2009 by Wilson Snyder.  This program is free software; you
+Copyright 2001-2010 by Wilson Snyder.  This program is free software; you
 can redistribute it and/or modify it under the terms of either the GNU
 Lesser General Public License Version 3 or the Perl Artistic License
 Version 2.0.

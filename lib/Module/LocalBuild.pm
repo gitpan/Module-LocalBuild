@@ -9,9 +9,10 @@ use IO::Dir;
 use strict;
 use vars qw ($VERSION @Ignore_Files_Regexps);
 
-$VERSION = '1.011';
+$VERSION = '1.012';
 
 @Ignore_Files_Regexps = (qr!/CVS$!,
+			 qr!.git$!,
 			 qr!.svn$!,
 			 qr!/here_perl$!,
 			 qr!/blib$!,
@@ -281,7 +282,7 @@ variable.
 
 =head1 DISTRIBUTION
 
-Copyright 2000-2009 by Wilson Snyder.  This program is free software; you
+Copyright 2000-2010 by Wilson Snyder.  This program is free software; you
 can redistribute it and/or modify it under the terms of either the GNU
 Lesser General Public License Version 3 or the Perl Artistic License
 Version 2.0.

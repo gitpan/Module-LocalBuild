@@ -1,11 +1,11 @@
 --- #YAML:1.0
 name:                Module-LocalBuild
-version:             1.011
+version:             1.012
 abstract:            Detect module changes and rebuild into local area
 license:             ~
 author:              
     - Wilson Snyder <wsnyder@wsnyder.org>
-generated_by:        ExtUtils::MakeMaker version 6.44
+generated_by:        ExtUtils::MakeMaker version 6.42
 distribution_type:   module
 requires:     
     Pod::Usage:                    0
