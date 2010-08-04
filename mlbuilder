@@ -16,7 +16,7 @@ use Module::LocalBuild;
 use strict;
 use vars qw ($Project $Debug $VERSION);
 
-$VERSION = '1.012';
+$VERSION = '1.013';
 
 ######################################################################
 

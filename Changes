@@ -3,6 +3,12 @@ Revision history for Perl extension Module::LocalBuild.
 The contributors that suggested a given feature are shown in [].  [by ...]
 indicates the contributor was also the author of the fix; Thanks!
 
+* Module::LocalBuild 1.013 2010/08/04
+
+****	Fix Pod::Usage dependency, rt51024.  [Andreas Koenig]
+
+****	Give obvious error message when MS-Windows unsupported.
+
 * Module::LocalBuild 1.012 2010/01/12
 
 ***	Ignore .git directories when detecting changes.

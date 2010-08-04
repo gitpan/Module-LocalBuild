@@ -7,6 +7,7 @@
 require 5.005;
 use ExtUtils::MakeMaker;
 use Carp;
+use Config;
 
 sub MY::postamble {
     q{
@@ -40,6 +41,10 @@ clean::
 };
 }
 
+if ($Config{osname} =~ /MSWin/) {
+    die "%Error: The Module::LocalBuild package does not yet support MSWindows.  Use Cygwin instead.\n";
+}
+
 WriteMakefile(
 	      VERSION_FROM => 'lib/Module/LocalBuild.pm',
 	      DISTNAME  => 'Module-LocalBuild',
@@ -48,7 +53,7 @@ WriteMakefile(
 	      ABSTRACT  => 'Detect module changes and rebuild into local area',
 	      EXE_FILES => [qw(mlbuilder)],
 	      PREREQ_PM => {
-			    'Pod::Usage' => 0,
+			    'Pod::Usage' => 1.34,
 			},
 	      'dist'    => {COMPRESS => 'gzip -9f',
 			    SUFFIX   => '.gz',
